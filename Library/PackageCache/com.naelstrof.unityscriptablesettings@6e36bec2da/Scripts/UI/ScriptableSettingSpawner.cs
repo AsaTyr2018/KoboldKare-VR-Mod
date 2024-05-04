@@ -207,11 +207,7 @@ public class ScriptableSettingSpawner : MonoBehaviour {
         }
     }
     public void CreateTitle(LocalizedString group) {
-        GameObject title = GameObject.Instantiate(groupTitle, Vector3.zero, Quaternion.identity);
-        title.transform.SetParent(this.transform);
-        title.transform.localScale = Vector3.one;
-        title.transform.localPosition = Vector3.zero;
-        title.transform.localRotation = Quaternion.identity;
+        GameObject title = GameObject.Instantiate(groupTitle, this.transform, false);
             foreach ( TMP_Text t in title.GetComponentsInChildren<TMP_Text>()) {
             if (t.name == "Label") {
                 t.text = group.GetLocalizedString();
@@ -221,11 +217,7 @@ public class ScriptableSettingSpawner : MonoBehaviour {
         titles.Add(title);
     }
     private void CreateSlider(Setting option) {
-        GameObject s = GameObject.Instantiate(slider, Vector3.zero, Quaternion.identity);
-        s.transform.SetParent(this.transform);
-        s.transform.localScale = Vector3.one;
-        s.transform.localPosition = Vector3.zero;
-        s.transform.localRotation = Quaternion.identity;
+        GameObject s = GameObject.Instantiate(slider, this.transform, false);
             foreach ( TMP_Text t in s.GetComponentsInChildren<TMP_Text>()) {
             if (t.name == "Label") {
                 t.text = option.localizedName.GetLocalizedString();
@@ -262,11 +254,7 @@ public class ScriptableSettingSpawner : MonoBehaviour {
         sliders.Add(option, slid);
     }
     private void CreateStringInput(Setting option) {
-        GameObject d = GameObject.Instantiate(textInput, Vector3.zero, Quaternion.identity);
-        d.transform.SetParent(this.transform);
-        d.transform.localScale = Vector3.one;
-        d.transform.localPosition = Vector3.zero;
-        d.transform.localRotation = Quaternion.identity;
+        GameObject d = GameObject.Instantiate(textInput, this.transform, false);
             foreach ( TMP_Text t in d.GetComponentsInChildren<TMP_Text>()) {
             if (t.name == "Label") {
                 //t.text = o.type.ToString();
@@ -319,11 +307,7 @@ public class ScriptableSettingSpawner : MonoBehaviour {
         textInputs.Add(option, inputField);
     }
     public void CreateDropDown(SettingInt option) {
-        GameObject d = GameObject.Instantiate(dropdown, Vector3.zero, Quaternion.identity);
-        d.transform.SetParent(this.transform);
-        d.transform.localScale = Vector3.one;
-        d.transform.localPosition = Vector3.zero;
-        d.transform.localRotation = Quaternion.identity;
+        GameObject d = GameObject.Instantiate(dropdown, this.transform, false);
             foreach ( TMP_Text t in d.GetComponentsInChildren<TMP_Text>()) {
             if (t.name == "Label") {
                 //t.text = o.type.ToString();
