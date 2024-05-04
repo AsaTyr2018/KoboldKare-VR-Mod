@@ -22,20 +22,15 @@ public class SliderAmountDisplay : MonoBehaviour
             yield return wait;
         }
     }
-
-        private void Start()
-        {
-            UpdateText(GetComponentInParent<Slider>().value);
-            group.alpha = 1f;
-        }
-        public void UpdateText(float single) {
-        if (single.ToString().Length > 3) {
-            targetText.text = single.ToString("0.0");
+    public void UpdateText(float single) {
+        if (single.ToString().Length > 4) {
+            targetText.text = single.ToString("0.00");
         } else {
             targetText.text = single.ToString();
-        } 
+        }
+        group.alpha = 1f;
         StopAllCoroutines();
-        //StartCoroutine("FadeOut");
+        StartCoroutine("FadeOut");
     }
 }
 
