@@ -15,28 +15,10 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MoveVR",
-                    "type": "Value",
-                    "id": "a3795daf-4ea7-40f0-a04b-7dbf4dce5acf",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Jump",
                     "type": "Value",
                     "id": "b550e176-87c2-4c76-9811-7066eeeb09d2",
                     "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "JumpVR",
-                    "type": "Value",
-                    "id": "368f7dea-500f-4604-910e-f826d68595fc",
-                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -87,42 +69,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "GrabRightVR",
-                    "type": "Value",
-                    "id": "d09fff36-9402-4226-a1a8-34e2cb8329b7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "GrabLeftVR",
-                    "type": "Value",
-                    "id": "ff9241f2-668e-42be-ba61-4e51ee7813c2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "UseVR",
-                    "type": "Button",
-                    "id": "5405e210-0a63-4392-9f09-55a9e3a19f2f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Grab Push and Pull",
-                    "type": "Value",
-                    "id": "5f8cabfe-1e20-48c9-b3d0-47c623386416",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Crouch",
                     "type": "Value",
                     "id": "5b135bde-6ae9-4419-bb3e-c82fcd26909a",
@@ -136,6 +82,15 @@
                     "type": "Value",
                     "id": "ca49f33d-5d9f-4409-b5ce-882d7bf7e519",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Grab Push and Pull",
+                    "type": "Value",
+                    "id": "5f8cabfe-1e20-48c9-b3d0-47c623386416",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -249,24 +204,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "7d5c81fd-1dac-483f-86a7-029428d0cd45",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "QuickActions",
-                    "type": "Button",
-                    "id": "d21275c7-4008-4f55-a142-880a679865e7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ErectionUp",
                     "type": "Value",
                     "id": "b954f352-cb6f-448d-8d72-62718c2d2bb4",
@@ -330,6 +267,69 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "QuickActions",
+                    "type": "Button",
+                    "id": "d21275c7-4008-4f55-a142-880a679865e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "7d5c81fd-1dac-483f-86a7-029428d0cd45",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MoveVR",
+                    "type": "Value",
+                    "id": "a3795daf-4ea7-40f0-a04b-7dbf4dce5acf",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "JumpVR",
+                    "type": "Value",
+                    "id": "368f7dea-500f-4604-910e-f826d68595fc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "UseVR",
+                    "type": "Button",
+                    "id": "5405e210-0a63-4392-9f09-55a9e3a19f2f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GrabRightVR",
+                    "type": "Value",
+                    "id": "d09fff36-9402-4226-a1a8-34e2cb8329b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "GrabLeftVR",
+                    "type": "Value",
+                    "id": "ff9241f2-668e-42be-ba61-4e51ee7813c2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "VRLeftHandTracking State",
                     "type": "Value",
                     "id": "75b3f53b-bafe-4e88-b611-5b3cfc06c891",
@@ -352,6 +352,15 @@
                     "type": "Value",
                     "id": "5979127e-fc99-42bd-a3ee-2390d403a1cb",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "VRErection",
+                    "type": "Value",
+                    "id": "6ba20326-5b11-4a05-ac11-ac1f56e81eb8",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -564,50 +573,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Grab Push and Pull",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "136341d3-aeef-4c9e-9bbe-235e2dc0d0fa",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f9f598d6-0efe-44cc-b86b-e0a4fb8f7a5a",
-                    "path": "<Gamepad>/leftStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3a17ca90-5133-40fb-9413-2cdf14df371a",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "View Stats",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a1b639b7-5822-4944-83fa-9b3a1e625a48",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "View Stats",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -833,50 +798,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d11ad586-dbca-4aad-a3be-f51edaf1348e",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2c38f9d2-ed5d-492b-830f-8655f719b29d",
-                    "path": "<Gamepad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3eb78e9f-53aa-4345-a33e-36d01e7dcdb0",
-                    "path": "<XRController>{LeftHand}/menu",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "282d6eb7-f0bc-4522-99ff-d37211418e7e",
-                    "path": "<XRController>{LeftHand}/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "745a0c92-97e8-4719-9747-e434df652197",
                     "path": "<Keyboard>/z",
                     "interactions": "",
@@ -987,6 +908,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f3e70a2a-81e1-4120-b37d-23c0442604bd",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HipControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5d96be7a-78a6-4b24-8748-1e849b8b521a",
                     "path": "<Mouse>/scroll/y",
                     "interactions": "",
@@ -1081,17 +1013,6 @@
                     "processors": "StickDeadzone,ScaleVector2(x=40,y=40)",
                     "groups": "",
                     "action": "LookJoystick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8adad765-ca12-4c35-b016-4e642fe2ef44",
-                    "path": "<XRController>{RightHand}/grip",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GrabRightVR",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1196,6 +1117,116 @@
                 },
                 {
                     "name": "",
+                    "id": "9c37ac5e-0766-40b7-9bf4-b591a5850d49",
+                    "path": "<OculusTouchController>{RightHand}/thumbstick/y",
+                    "interactions": "",
+                    "processors": "AxisDeadzone(min=0.5,max=1)",
+                    "groups": "",
+                    "action": "VRErection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ef6a625-a050-4936-98fa-c2f7c34ae871",
+                    "path": "<ViveController>{RightHand}/trackpad/y",
+                    "interactions": "",
+                    "processors": "AxisDeadzone(min=0.5,max=1)",
+                    "groups": "",
+                    "action": "VRErection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "221a7085-8bb7-4678-bd66-c425104739ac",
+                    "path": "<ValveIndexController>{RightHand}/trackpad/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VRErection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86d793d2-75e3-4159-9c71-8c55e99cc12f",
+                    "path": "<WMRSpatialController>/touchpad/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VRErection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "545c79ab-7730-4504-8e7e-e808f003a8fd",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseVR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ed9aa25-33df-4b7e-bc65-4dcbe6a7ba6f",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseVR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "136341d3-aeef-4c9e-9bbe-235e2dc0d0fa",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9f598d6-0efe-44cc-b86b-e0a4fb8f7a5a",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a17ca90-5133-40fb-9413-2cdf14df371a",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "View Stats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1b639b7-5822-4944-83fa-9b3a1e625a48",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "View Stats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d6e1bd2d-674c-47b3-9acc-f634eb1c17b5",
                     "path": "<XRController>{LeftHand}/grip",
                     "interactions": "",
@@ -1207,34 +1238,12 @@
                 },
                 {
                     "name": "",
-                    "id": "2e277eab-1636-405c-940e-4188e4f341d8",
-                    "path": "<Keyboard>/alt",
+                    "id": "8adad765-ca12-4c35-b016-4e642fe2ef44",
+                    "path": "<XRController>{RightHand}/grip",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "QuickActions",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "57c3f084-1aaf-4811-86fe-b0298c9cfe43",
-                    "path": "<XRController>{RightHand}/menu",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "QuickActions",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8cfaae42-c4a9-4462-bafc-6077c868cea4",
-                    "path": "<XRController>{RightHand}/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "QuickActions",
+                    "action": "GrabRightVR",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1306,23 +1315,89 @@
                 },
                 {
                     "name": "",
-                    "id": "545c79ab-7730-4504-8e7e-e808f003a8fd",
-                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "id": "603b8e63-02a8-4444-8dc2-db7374b852f7",
+                    "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseVR",
+                    "action": "JumpVR",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "0ed9aa25-33df-4b7e-bc65-4dcbe6a7ba6f",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "id": "d11ad586-dbca-4aad-a3be-f51edaf1348e",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseVR",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c38f9d2-ed5d-492b-830f-8655f719b29d",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3eb78e9f-53aa-4345-a33e-36d01e7dcdb0",
+                    "path": "<XRController>{LeftHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "282d6eb7-f0bc-4522-99ff-d37211418e7e",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e277eab-1636-405c-940e-4188e4f341d8",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickActions",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57c3f084-1aaf-4811-86fe-b0298c9cfe43",
+                    "path": "<XRController>{RightHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickActions",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8cfaae42-c4a9-4462-bafc-6077c868cea4",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickActions",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
