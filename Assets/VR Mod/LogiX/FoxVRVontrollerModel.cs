@@ -2,25 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.XR.Interaction;
-using UnityEngine.XR.LegacyInputHelpers;
-using UnityEngine.XR.Management;
-using UnityEngine.XR.Provider;
-using UnityEngine.XR.OpenXR;
-using UnityEngine.XR.OpenXR.Input;
-using UnityEngine.XR.OpenXR.Features;
-using UnityEngine.SpatialTracking; 
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.Rendering.Universal;
-using UnityScriptableSettings;
-
-//A dumb effortless script
-//I'll re-write it after my surgery
 
 public class FoxVRVontrollerModel : MonoBehaviour
 {
-    [SerializeField]
-    private bool rightHand;//turn into dropdown
+
+
+
     [SerializeField]
     private Transform controllerVisual;
     [SerializeField]
@@ -28,21 +15,7 @@ public class FoxVRVontrollerModel : MonoBehaviour
     private List<InputDevice> devices = new List<InputDevice>(); 
     [SerializeField]
     private List<aboutController> controllerData = new List<aboutController>();
-    [System.Serializable]
-    private class aboutController
-    {
-        public string name;
-        [Space(5)]
-        public Mesh mesh;
-        [Space (15)]
-        public Vector3 modelPositionOffset;
-        public Vector3 modelRotationOffset;
-        [Space(5)]
-        public Vector3 handPositionOffset;
-        public Vector3 handRotationOffset;
-    }
-
-
+    public UnityEngine.InputSystem.InputActionReference controllerActivity;
 
 
 
@@ -64,36 +37,49 @@ public class FoxVRVontrollerModel : MonoBehaviour
 
 
 
-    
-
     void DeviceConnected(InputDevice device) //Make it go into one handed/seated mode if one/none controllers presented
     {
+        print(device.name);
+        print(device.manufacturer);
+        print(device.characteristics);
+        UpdateVisuals(device);
+        
+        /*
         if ((device.characteristics & InputDeviceCharacteristics.Left) != 0)
         {
-            GetModel(device);
+            UpdateVisuals(device);
         }
         else if ((device.characteristics & InputDeviceCharacteristics.Right) != 0)
         {
-            GetModel(device);
-        }
+            UpdateVisuals(device);
+        }*/
     }
+
+
 
     void DeviceDisconnected(InputDevice device) //Make it go into one handed/seated mode if one/none controllers presented
     {
         StartCoroutine(FoxVRLoader.ControllerDiedAt(transform.position));
     }
 
-    private void GetModel(InputDevice device)
-    { 
-        if (rightHand)
-        controllerVisual.localScale = new Vector3(-1, 1, 1);
+
+
+
+    private void UpdateVisuals(InputDevice device)
+    {
+        if (device.characteristics.HasFlag(InputDeviceCharacteristics.Controller))
+        {
+            if (device.characteristics.HasFlag(InputDeviceCharacteristics.Left))
+                controllerVisual.localScale = new Vector3(1, 1, 1);
+            else
+                controllerVisual.localScale = new Vector3(-1, 1, 1);
+        }
+        //Wanted to use switch, but im too dumb to work with flags
 
         foreach (aboutController controller in controllerData)   
         {
-            
             if (device.name.Contains(controller.name))
             {
-
                 controllerVisual.GetComponent<MeshFilter>().mesh = controller.mesh;
 
                 controllerVisual.localPosition = controller.modelPositionOffset;
@@ -101,11 +87,35 @@ public class FoxVRVontrollerModel : MonoBehaviour
 
                 handVisual.localPosition = controller.handPositionOffset;
                 handVisual.localRotation = Quaternion.Euler(controller.handRotationOffset);
-                return;
 
+                return;
             }
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    [System.Serializable]
+    private class aboutController
+    {
+        public string name;
+        [Space(5)]
+        public Mesh mesh;
+        [Space(15)]
+        public Vector3 modelPositionOffset;
+        public Vector3 modelRotationOffset;
+        [Space(5)]
+        public Vector3 handPositionOffset;
+        public Vector3 handRotationOffset;
+    }
 
 }

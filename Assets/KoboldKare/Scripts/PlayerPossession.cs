@@ -257,8 +257,10 @@ public class PlayerPossession : MonoBehaviourPun {
 
     private void OnDestroy() {
         if (gameObject.scene.isLoaded) {
-            if (kobold == (Kobold)PhotonNetwork.LocalPlayer.TagObject) {
-                Instantiate(diePrefab, transform.position, Quaternion.identity);
+            if (kobold == (Kobold)PhotonNetwork.LocalPlayer.TagObject)
+            {
+                NetworkManager.instance.SpawnControllablePlayer();
+                //Instantiate(diePrefab, transform.position, Quaternion.identity);
             }
             playerDieEvent.Raise(transform.position);
         }

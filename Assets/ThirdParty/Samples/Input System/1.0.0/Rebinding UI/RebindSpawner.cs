@@ -25,7 +25,8 @@ public class RebindSpawner : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.25f);
         controlUI.Clear();
         foreach( var r in rebindActionNamePairs) {
-            GameObject i = GameObject.Instantiate(rebindPrefab, transform,false);
+            GameObject i = GameObject.Instantiate(rebindPrefab, transform);
+            
             i.GetComponentInChildren<TextMeshProUGUI>().text = r.controlName.GetLocalizedString();
             controlUI[r] = i;
             int id = 0;

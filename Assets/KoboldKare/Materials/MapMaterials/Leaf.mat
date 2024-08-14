@@ -191,7 +191,7 @@ Material:
     - _BillboardKwToggle: 0
     - _BillboardShadowFade: 0.5
     - _Blend: 0
-    - _BumpScale: 1
+    - _BumpScale: 15
     - _CircleDefinition: 0
     - _CircleSize: 0
     - _ColorShifting: 1

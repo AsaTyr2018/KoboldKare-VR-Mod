@@ -8,7 +8,7 @@ public class HandIK : MonoBehaviour {
     private List<Hand> hands = new List<Hand>();
     private Transform[] controllers = new Transform[2];
     public bool controlledByPlayer;
-    [SerializeField] Vector3[] bends = new Vector3[3] { new Vector3(0, 0, 0), new Vector3(0, 0, 45), new Vector3(0, 0, -45), };
+    Vector3[] fingerBends = new Vector3[3] { new Vector3(0, 0, 0), new Vector3(0, 0, 45), new Vector3(0, 0, -45), };
     private class Hand {
         public float positionWeight = 0f;
         public float rotationWeight = 0f;
@@ -42,8 +42,12 @@ public class HandIK : MonoBehaviour {
 
         if (FoxVRLoader.GetSeatedMode()) return;
 
-        controllers[0] = FoxVRLoader.GetTrackedDeviceTRANSFORM(FoxVRLoader.XRDevice.RightHand);//GameObject.Find("VRHandsAttachPoseLEFT").transform;
-        controllers[1] = FoxVRLoader.GetTrackedDeviceTRANSFORM(FoxVRLoader.XRDevice.LeftHand);
+        controllers[0] = FoxVRLoader.GetTrackedDeviceTransform(FoxVRLoader.XRDevice.RightHand);
+        controllers[1] = FoxVRLoader.GetTrackedDeviceTransform(FoxVRLoader.XRDevice.LeftHand);
+
+
+        controllers[0] = FoxVRLoader.GetTrackedDeviceTransform(FoxVRLoader.XRDevice.RightHand);
+        controllers[1] = FoxVRLoader.GetTrackedDeviceTransform(FoxVRLoader.XRDevice.LeftHand);
     }
     public void SetIKTarget(int hand, Vector3 position, Quaternion rotation) {
         hands[hand].position = position;
@@ -94,27 +98,27 @@ public class HandIK : MonoBehaviour {
 
 
 
-            animator.SetBoneLocalRotation(HumanBodyBones.RightIndexProximal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.triggerSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightIndexIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.triggerSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightIndexDistal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.triggerSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightMiddleProximal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.gripSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightRingProximal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.gripSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightLittleIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.gripSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightMiddleIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.gripSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightRingIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.gripSqueezeR)));
-            animator.SetBoneLocalRotation(HumanBodyBones.RightLittleDistal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[1], FoxVRLoader.gripSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightIndexProximal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.triggerSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightIndexIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.triggerSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightIndexDistal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.triggerSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightMiddleProximal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.gripSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightRingProximal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.gripSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightLittleIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.gripSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightMiddleIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.gripSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightRingIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.gripSqueezeR)));
+            animator.SetBoneLocalRotation(HumanBodyBones.RightLittleDistal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[1], FoxVRLoader.gripSqueezeR)));
             animator.SetBoneLocalRotation(HumanBodyBones.RightThumbDistal, Quaternion.Euler(FoxVRLoader.thumbMoveR));
 
 
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftIndexProximal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.triggerSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftIndexIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.triggerSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftIndexDistal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.triggerSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftMiddleProximal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.gripSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftRingProximal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.gripSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftLittleIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.gripSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftMiddleIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.gripSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftRingIntermediate, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.gripSqueezeL)));
-            animator.SetBoneLocalRotation(HumanBodyBones.LeftLittleDistal, Quaternion.Euler(Vector3.Lerp(bends[0], bends[2], FoxVRLoader.gripSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftIndexProximal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.triggerSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftIndexIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.triggerSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftIndexDistal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.triggerSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftMiddleProximal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.gripSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftRingProximal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.gripSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftLittleIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.gripSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftMiddleIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.gripSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftRingIntermediate, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.gripSqueezeL)));
+            animator.SetBoneLocalRotation(HumanBodyBones.LeftLittleDistal, Quaternion.Euler(Vector3.Lerp(fingerBends[0], fingerBends[2], FoxVRLoader.gripSqueezeL)));
             animator.SetBoneLocalRotation(HumanBodyBones.LeftThumbDistal, Quaternion.Euler(FoxVRLoader.thumbMoveR));
 
         }

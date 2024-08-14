@@ -4,33 +4,40 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadingListener : MonoBehaviour {
-    void Start() {
+    void Start() 
+    {
         LevelLoader.instance.sceneLoadStart += SceneLoadStart;
         LevelLoader.instance.sceneLoadEnd += SceneLoadEnd;
         gameObject.SetActive(false);
     }
+
     void SceneLoadStart()
     {
-        FoxVRLoader.endedBlackout = false;
         gameObject.SetActive(true);
         gameObject.GetComponent<CanvasGroup>().alpha = 1f;
     }
-    void OnDestroy() {
+
+    void SceneLoadEnd()
+    {
+        gameObject.SetActive(false);
+        gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
+        gameObject.GetComponent<CanvasGroup>().alpha = 1f;
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        gameObject.GetComponent<CanvasGroup>().alpha = 0f;
+    }
+
+    void OnDestroy()
+    {
         LevelLoader.instance.sceneLoadStart -= SceneLoadStart;
         LevelLoader.instance.sceneLoadEnd -= SceneLoadEnd;
-    }
-    void SceneLoadEnd() {
-        gameObject.SetActive(false);
-        gameObject.GetComponent<CanvasGroup>().alpha = 0f;
-    }
-
-    public void Show(){
-        gameObject.SetActive(true);
-        gameObject.GetComponent<CanvasGroup>().alpha = 1f;
-    }
-
-    public void Hide(){
-        gameObject.SetActive(false);
-        gameObject.GetComponent<CanvasGroup>().alpha = 0f;
     }
 }

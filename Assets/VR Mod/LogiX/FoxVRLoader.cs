@@ -8,8 +8,6 @@ using UnityScriptableSettings;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
-
 public class FoxVRLoader : MonoBehaviour
 {
 #pragma warning disable CS0618  
@@ -92,9 +90,8 @@ public class FoxVRLoader : MonoBehaviour
     static string lastLoadedScene;
     public static bool activateHandTracking;
     private static bool koboldIsAvailable;  
-    public static bool endedBlackout;
+    public static bool loadingScene;
     public static bool gameLoaded;
-    private bool firstLauhch;
 
     [SerializeField] InputActionReference triggerR;
     [SerializeField] InputActionReference triggerL;
@@ -117,22 +114,23 @@ public class FoxVRLoader : MonoBehaviour
 
     #region Load Prefs
 
-    void SetupForGame()
+    IEnumerator SetupGame()
     {
         gameManOBJ.transform.localScale = Vector3.one; 
 
         StopCoroutine(activeBoldManager);
         activeBoldManager = GetActiveBold();
         StartCoroutine(GetActiveBold());
-         
+
+        yield return new WaitUntil(() => koboldIsAvailable);
+
         StopCoroutine(menuPositioner);
         menuPositioner = ResetMenuPos();
         StartCoroutine(menuPositioner);
 
-        OptimizeVRMode();         
+        OptimizeVRMode();
 
-        endedBlackout = true;
-        print("successfull gameplay");
+        loadingScene = false;
     }
      
 
@@ -142,11 +140,9 @@ public class FoxVRLoader : MonoBehaviour
         gameManOBJ.transform.position = Vector3.zero;
         xrSetupOBJ.transform.parent.localScale = Vector3.one * .75f;
 
-        GetCamera(true); 
- 
+        GetCamera(true);
 
-        endedBlackout = true;
-        print("successfull menu");
+        loadingScene = false;
     }
 
     #endregion
@@ -155,16 +151,48 @@ public class FoxVRLoader : MonoBehaviour
 
     #region Update Events
 
+
+
+    void SceneLoadEnd()
+    {
+
+        lastLoadedScene = SceneManager.GetActiveScene().name;
+
+        StopCoroutine(activeBoldManager);
+        StopCoroutine(menuPositioner);
+
+        menuPositioner = ResetMenuPos();
+
+        activateHandTracking = false;
+
+        if (lastLoadedScene == "MainMenu")
+        {
+            ControllerVisibility(true);
+            activeCamera = vrCamera;
+            vrCamera.enabled = true;
+            Invoke("SetupForMenu", 2);
+        }
+        else
+        {
+            StartCoroutine(SetupGame());
+        }
+
+        loadingScene = false;
+        print("END - " + SceneManager.GetActiveScene().name);
+    }
+
+    void SceneLoadStart()
+    {
+        loadingScene = true;
+        print("START - " + SceneManager.GetActiveScene().name);
+    }
+
+
     IEnumerator LevelTracker()
     {
-        print("Started Tracking Levels");
-        xrEvents.enabled = true;
-        uiEvents.enabled = false;
-        menuPositioner = ResetMenuPos();
-        activeBoldManager = GetActiveBold(); 
 
-        while (true)
-        {
+        //while (true)
+       // {
             lastLoadedScene = SceneManager.GetActiveScene().name;
 
             StopCoroutine(activeBoldManager);
@@ -183,14 +211,14 @@ public class FoxVRLoader : MonoBehaviour
             }
             else
             {
-                Invoke("SetupForGame", 4);
+                StartCoroutine(SetupGame());
             }
 
             print("Successfully loaded - " + SceneManager.GetActiveScene().name);
+        yield return null;
+         //   yield return new WaitUntil(() => SceneManager.GetActiveScene().name != lastLoadedScene);
 
-            yield return new WaitUntil(() => SceneManager.GetActiveScene().name != lastLoadedScene);
-
-        }
+       // }
     }
 
 
@@ -256,34 +284,11 @@ public class FoxVRLoader : MonoBehaviour
         return activeCamera.transform;
     }
 
-    public static Vector3 GetTrackedDevicePosition(XRDevice _device)
-    {
-        switch (_device)
-        {
-            default:
-                return instance.vrCamera.transform.position;
-
-            case XRDevice.Head:
-                return instance.vrCamera.transform.position;
-
-            case XRDevice.LeftHand:
-                return instance.controllersTRAs[1].transform.position;
-
-            case XRDevice.RightHand:
-                return instance.controllersTRAs[0].transform.position;
-
-            case XRDevice.LeftFeet:
-                return instance.leftFeet.transform.position;
-
-            case XRDevice.RightFeet:
-                return instance.rightFeet.transform.position;
-        } 
-    }
 
     /// <summary>
     /// Remove this one later
     /// </summary> 
-    public static Transform GetTrackedDeviceTRANSFORM(XRDevice _device)
+    public static Transform GetTrackedDeviceTransform(XRDevice _device)
     {
         switch (_device)
         {
@@ -328,6 +333,30 @@ public class FoxVRLoader : MonoBehaviour
 
             case XRDevice.RightFeet:
                 return instance.rightFeet.transform.rotation;
+        }
+    }
+
+    public static Vector3 GetTrackedDevicePosition(XRDevice _device)
+    {
+        switch (_device)
+        {
+            default:
+                return instance.vrCamera.transform.position;
+
+            case XRDevice.Head:
+                return instance.vrCamera.transform.position;
+
+            case XRDevice.LeftHand:
+                return instance.controllersTRAs[1].transform.position;
+
+            case XRDevice.RightHand:
+                return instance.controllersTRAs[0].transform.position;
+
+            case XRDevice.LeftFeet:
+                return instance.leftFeet.transform.position;
+
+            case XRDevice.RightFeet:
+                return instance.rightFeet.transform.position;
         }
     }
 
@@ -414,7 +443,7 @@ public class FoxVRLoader : MonoBehaviour
         while (true)
         {
             koboldIsAvailable = false;
-            endedBlackout = false;
+            loadingScene = true;
 
             if (controlledKoboldOBJ == null)
             {
@@ -439,7 +468,7 @@ public class FoxVRLoader : MonoBehaviour
 
             RescalePlayer();
 
-            endedBlackout = true;
+            loadingScene = false;
 
             yield return new WaitUntil(() => controlledKoboldOBJ == null || !controlledKoboldOBJ.gameObject.activeSelf);
         }
@@ -635,7 +664,6 @@ public class FoxVRLoader : MonoBehaviour
 
 
 
-
     IEnumerator Start()
     {
         gameLoaded = false;
@@ -644,9 +672,17 @@ public class FoxVRLoader : MonoBehaviour
 
         menuPositioner = ResetMenuPos();
         activeBoldManager = GetActiveBold();
+
         if (instance == null)
         {
             instance = this;
+            xrEvents.enabled = true;
+            uiEvents.enabled = false;
+            menuPositioner = ResetMenuPos();
+            activeBoldManager = GetActiveBold();
+
+            LevelLoader.instance.sceneLoadStart += SceneLoadStart;
+            LevelLoader.instance.sceneLoadEnd += SceneLoadEnd;
             StartCoroutine(LevelTracker());
         }
         yield return new WaitUntil(() => SettingsManager.GetSetting("VRTunneling") != null);
@@ -755,8 +791,8 @@ public class FoxVRLoader : MonoBehaviour
             testFunctionsOption.changed -= OnTestFunctionsChanged; 
         }
 
-        //LevelLoader.instance.sceneLoadStart -= SceneLoadStart;
-        //LevelLoader.instance.sceneLoadEnd -= SceneLoadEnd;
+        LevelLoader.instance.sceneLoadStart -= SceneLoadStart;
+        LevelLoader.instance.sceneLoadEnd -= SceneLoadEnd;
     }
 
     void OnTunnelingChanged(float value)
@@ -784,8 +820,22 @@ public class FoxVRLoader : MonoBehaviour
         {
             item.SetActive(upcommingFeatures);
         }
-    } 
+    }
 
 
 
+
+
+
+
+
+
+
+    [System.Serializable]
+    public class DeviceTransform
+    {
+        public Vector3 _pos;
+        public Quaternion _rot;
+        public float _aux;
+    }
 }

@@ -3,25 +3,23 @@ using UnityEngine;
 
 public class BlackoutScreen : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup vrCanvas;
     [SerializeField] private GameObject loadingObject;
      
 
     private void Awake()
     {
-        vrCanvas = GetComponent<CanvasGroup>();
-        StartCoroutine(BlackoutActivate());
+        StartCoroutine(LoadingScreen());
     } 
 
-    IEnumerator BlackoutActivate()
+    IEnumerator LoadingScreen()
     { 
         while (true)
         { 
             loadingObject.SetActive(true);
-            yield return new WaitUntil(() => FoxVRLoader.endedBlackout);
+            yield return new WaitUntil(() => !FoxVRLoader.loadingScene);
               
             loadingObject.SetActive(false);
-            yield return new WaitUntil(() => !FoxVRLoader.endedBlackout);
+            yield return new WaitUntil(() => FoxVRLoader.loadingScene);
              
         } 
     }

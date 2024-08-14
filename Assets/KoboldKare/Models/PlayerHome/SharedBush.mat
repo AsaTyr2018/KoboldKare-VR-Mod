@@ -132,7 +132,7 @@ Material:
     - _TransNormal: 0.5
     - _TransScattering: 2
     - _TransShadow: 0.5
-    - _TransStrength: 1
+    - _TransStrength: 0
     - _Value: 1
     - _WindModeLeaves: 0
     - _WorkflowMode: 1
