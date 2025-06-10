@@ -20,7 +20,6 @@ If you prefer playing with mouse&keyboard in vr then you can toggle a seated mod
 Having issues with navigation in menus with controller? Known issue, wait for fix.
 Wanna play with mods? Drag mod files from _Steam\steamapps\workshop\content_ into _LocalLow\Naelstrof\KoboldKare VR\mods_ folder.
 
-## No longer maintained (Read Only)
+## WIP
 
-I just lost motivation to work on this mod.
-Plus I had to close my Discord messages for almost a two years because of certain group of peoples from game's official Discord server. No fun.
+Lets get to work!
